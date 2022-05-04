@@ -13,8 +13,18 @@ class PasswordWidget extends StatefulWidget {
         : const Icon(Icons.visibility_off);
   }
 
+  final Map<String, Map<String, dynamic>> _limits = {
+    'valid': {'nb': 8, 'color': Colors.green},
+    'intermediate': {'nb': 4, 'color': Colors.orange},
+    'invalid': {'nb': 8, 'color': Colors.red},
+  };
   Color getColor() {
-    return Colors.red;
+    if (_type.length >= _limits['valid']!['nb']) {
+      return _limits['valid']!['color'];
+    } else if (_type.length >= _limits['intermediate']!['nb']) {
+      return _limits['intermediate']!['color'];
+    }
+    return _limits['invalid']!['color'];
   }
 
   @override
@@ -51,11 +61,12 @@ class _PasswordWidgetState extends State<PasswordWidget> {
         const SizedBox(
           height: 15,
         ),
-        Container(
+        AnimatedContainer(
           alignment: Alignment.center,
           width: 500,
           height: 5,
           color: widget.getColor(),
+          duration: const Duration(seconds: 1),
         )
       ],
     );

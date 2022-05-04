@@ -1,4 +1,6 @@
-import 'package:flt1/widgets/password_widget.dart';
+/* import 'package:flt1/widgets/tips_calculator.dart'; */
+/* import 'package:flt1/widgets/password_widget.dart'; */
+import 'package:flt1/services/routing.dart';
 import 'package:flutter/material.dart';
 
 // widget avec etat
@@ -15,15 +17,39 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
+    return MaterialApp.router(
+      routerDelegate: Routing.getRoutes().routerDelegate,
+      routeInformationParser: Routing.getRoutes().routeInformationParser,
+      title: 'Flutter App',
+      theme: ThemeData.dark(),
+      debugShowCheckedModeBanner: false,
+      //home: const HomeScreen(),
+    );
+  }
+}
+
+/*
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  Widget build(BuildContext context) {
     return MaterialApp(
         home: Scaffold(
+      backgroundColor: Color.fromARGB(255, 52, 52, 51),
       body: Container(
         padding: const EdgeInsets.all(20),
         alignment: Alignment.center,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            PasswordWidget(),
+            /* PasswordWidget(), */
+            TipsCalculator(),
           ],
         ),
       ),
@@ -31,7 +57,7 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-/* import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
 
